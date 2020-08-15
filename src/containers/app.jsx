@@ -1,8 +1,7 @@
 import React from 'react'
 import { Button } from 'antd'
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.less'
 
 export default class App extends React.Component {
   state = {}
@@ -10,7 +9,7 @@ export default class App extends React.Component {
     return (
       <div>
         123
-        <Button>123</Button>
+        <Button type="danger">123</Button>
       </div>
     )
   }
