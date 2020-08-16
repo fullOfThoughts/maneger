@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from 'antd'
-import withCopyRight from '../components/gao.jsx'
+import withCopyRight from './gao.jsx'
 
 @withCopyRight
 class App extends React.Component {
