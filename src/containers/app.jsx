@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button } from 'antd'
+import withCopyRight from '../components/gao.jsx'
 
-import 'antd/dist/antd.less'
-
-export default class App extends React.Component {
+@withCopyRight
+class App extends React.Component {
   state = {}
   render() {
     return (
@@ -14,3 +14,4 @@ export default class App extends React.Component {
     )
   }
 }
+export default App

@@ -8,14 +8,16 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.5.4",
     "craco-less": "^1.17.0",
+    "less": "^3.12.2",
+    "less-loader": "^6.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.2"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -34,6 +36,10 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^5.6.4"
+    "@babel/plugin-proposal-decorators": "^7.10.5",
+    "@craco/craco": "^5.6.4",
+    "babel-plugin-import": "^1.13.0",
+    "customize-cra": "^1.0.0",
+    "react-app-rewired": "^2.1.6"
   }
 }
