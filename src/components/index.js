@@ -1,2 +1,3 @@
 import Loading from './Loading'
-export { Loading }
+import Frame from './Frame'
+export { Loading, Frame }

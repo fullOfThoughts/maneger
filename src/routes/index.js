@@ -7,7 +7,13 @@ import {
   Articleedit,
 } from '../views'
 
-export const mainRouter = [
+import {
+  ConsoleSqlOutlined,
+  UnorderedListOutlined,
+  SettingOutlined,
+} from '@ant-design/icons'
+
+export const mainRoutes = [
   {
     pathname: '/login',
     component: Login,
@@ -18,26 +24,37 @@ export const mainRouter = [
   },
 ]
 
-export const adminRouter = [
+export const adminRoutes = [
   {
     pathname: '/admin/dashboard',
     component: Dashboard,
     exact: true,
+    title: '仪表盘',
+    isNav: true,
+    icon: ConsoleSqlOutlined,
   },
-  {
-    pathname: '/admin/settings',
-    component: Settings,
-    exact: true,
-  },
+
   {
     pathname: '/admin/article',
     component: Articlelist,
 
     exact: true,
+    title: '文章管理',
+    isNav: true,
+    icon: UnorderedListOutlined,
+  },
+  {
+    pathname: '/admin/settings',
+    component: Settings,
+    exact: true,
+    title: '设置',
+    isNav: true,
+    icon: SettingOutlined,
   },
   {
     pathname: '/admin/article/edit/:id',
     component: Articleedit,
     exact: true,
+    isNav: true,
   },
 ]

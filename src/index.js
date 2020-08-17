@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './app.js'
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import { mainRouter } from './routes'
+import { mainRoutes } from './routes'
 ReactDOM.render(
   <Router>
     <Switch>
@@ -14,7 +14,7 @@ ReactDOM.render(
         }}
       />
       {/*对于不需要权限的组件直接用map 生成 */}
-      {mainRouter.map((item, i) => {
+      {mainRoutes.map((item, i) => {
         return <Route key={i} path={item.pathname} component={item.component} />
       })}
       <Redirect from="/" to="/admin" exact />
