@@ -20,10 +20,19 @@ class Frame extends React.Component {
         <Layout style={{ height: '100%' }}>
           <Header
             className="header"
-            style={{ background: 'rgba(0, 0, 0, 0.65)' }}
+            style={{
+              background: 'rgba(0, 0, 0, 0.65)',
+              height: '50px',
+            }}
           >
             <div className="logo">
-              <img src={Logo} alt="123" width="180px" height="60px" />
+              <img
+                src={Logo}
+                alt="123"
+                width="180px"
+                height="50px"
+                style={{ position: 'absolute', top: '0' }}
+              />
             </div>
           </Header>
           <Content style={{ padding: '0 50px', height: '100%' }}>
@@ -53,7 +62,6 @@ class Frame extends React.Component {
               <Content
                 style={{
                   paddingLeft: '16px',
-                  minHeight: '100%',
                 }}
               >
                 {this.props.children}
