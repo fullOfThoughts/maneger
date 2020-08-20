@@ -15,6 +15,10 @@ class Frame extends React.Component {
     this.props.history.push(key)
   }
   render() {
+    let arr = this.props.location.pathname.split('/')
+    arr.length = 3
+    arr.join('/')
+
     return (
       <ConfigProvider locale={zhCN}>
         <Layout style={{ height: '100%' }}>
@@ -43,7 +47,7 @@ class Frame extends React.Component {
               <Sider className="site-layout-background" width={200}>
                 <Menu
                   mode="inline"
-                  selectedKeys={[this.props.location.pathname]}
+                  selectedKeys={[arr.join('/')]}
                   style={{ height: '100%' }}
                   onClick={({ key }) => this.menu({ key })}
                 >

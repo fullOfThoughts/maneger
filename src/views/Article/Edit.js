@@ -1,7 +1,21 @@
 import React from 'react'
-export default class Articleedit extends React.Component {
-  state = {}
+import { connect } from 'react-redux'
+import { Card, Button } from 'antd'
+class Articleedit extends React.Component {
+  state = {
+    editContent: {},
+  }
   render() {
-    return <div>Edit</div>
+    return (
+      <>
+        <Card
+          title={this.props.state.title}
+          bordered={false}
+          style={{ width: '100%', height: '100%' }}
+          extra={<Button>取消</Button>}
+        ></Card>
+      </>
+    )
   }
 }
+export default connect((state) => ({ state }))(Articleedit)

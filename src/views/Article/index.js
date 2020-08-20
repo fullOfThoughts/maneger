@@ -1,7 +1,9 @@
 import React from 'react'
 import XLSX from 'xlsx'
+import { connect } from 'react-redux'
+import { editArticle } from '../../actions'
 import { getArticle } from '../../requests'
-import { Card, Button, Table, Tag } from 'antd'
+import { Card, Button, Table, Tag, Popconfirm, message, Tooltip } from 'antd'
 const moment = require('moment')
 
 const columnMap = {
@@ -16,7 +18,7 @@ const columnMap = {
   total: 0,
 }
 
-export default class Articlelist extends React.Component {
+class Articlelist extends React.Component {
   state = {
     dataSource: [],
     total: 0,
@@ -26,8 +28,37 @@ export default class Articlelist extends React.Component {
   componentDidMount() {
     this.getData()
   }
-  delete = () => {
-    console.log()
+  //  删除数据
+  deleteArticle = (i) => {
+    const dataSource = this.state.dataSource.filter((item) => {
+      return item !== i
+    })
+    //  更新数据
+    const dataUp = () => {
+      const key = 'updatable'
+      window.setTimeout(
+        () => {
+          message.success({
+            content: '删除成功',
+            key,
+            duration: 1,
+            onClose: () => this.setState({ dataSource }),
+          })
+        },
+        1000
+        // back()
+      )
+      message.loading({ content: '删除中', key, duration: 1 })
+    }
+    dataUp()
+  }
+  cancle = () => {
+    message.success('取消成功')
+  }
+  //  跳转至edit
+  toEdit = (index, record) => {
+    this.props.history.push(`/admin/article/edit/${index}`)
+    this.props.editArticle(record)
   }
   //  获取数据
   getData = () => {
@@ -45,9 +76,15 @@ export default class Articlelist extends React.Component {
             render: (record) => {
               //  对于后端返回的不同数据做不同的处理
               return (
-                <Tag color={record.amount > 270 ? 'red' : 'green'}>
-                  {record.amount}
-                </Tag>
+                <Tooltip
+                  title={record.amount > 270 ? '大于270' : '小于270'}
+                  color={record.amount > 270 ? 'red' : 'green'}
+                  key="red"
+                >
+                  <Tag color={record.amount > 270 ? 'red' : 'green'}>
+                    {record.amount}
+                  </Tag>
+                </Tooltip>
               ) //  生成阅读量的tag
             },
           }
@@ -64,19 +101,28 @@ export default class Articlelist extends React.Component {
             title: columnMap[item],
             key: item,
             render: (text, record, index) => {
+              const i = record
               return (
                 <>
-                  <Button type="primary" success="true" size="small">
-                    编辑
-                  </Button>
                   <Button
                     type="primary"
-                    danger
+                    success="true"
                     size="small"
-                    onClick={() => this.delete()}
+                    onClick={() => this.toEdit(index, record)}
                   >
-                    删除
+                    编辑
                   </Button>
+                  <Popconfirm
+                    title="Are you sure delete this task?"
+                    onConfirm={() => this.deleteArticle(i)}
+                    onCancel={() => this.cancle()}
+                    okText="Yes"
+                    cancelText="No"
+                  >
+                    <Button type="primary" danger size="small">
+                      删除
+                    </Button>
+                  </Popconfirm>
                 </>
               )
             },
@@ -143,3 +189,4 @@ export default class Articlelist extends React.Component {
     )
   }
 }
+export default connect(null, { editArticle })(Articlelist)
