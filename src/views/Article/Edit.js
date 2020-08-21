@@ -12,12 +12,12 @@ class Articleedit extends React.Component {
     return (
       <>
         <Card
-          title={this.props.state.title}
+          title="编辑文章"
           bordered={false}
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: '100%', minHeight: '100%' }}
           extra={<Button>取消</Button>}
         >
-          <NormalLoginForm />
+          <NormalLoginForm id={this.props.match.params.id} />
         </Card>
       </>
     )

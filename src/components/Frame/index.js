@@ -17,8 +17,6 @@ class Frame extends React.Component {
   render() {
     let arr = this.props.location.pathname.split('/')
     arr.length = 3
-    arr.join('/')
-
     return (
       <ConfigProvider locale={zhCN}>
         <Layout style={{ height: '100%' }}>
@@ -66,6 +64,7 @@ class Frame extends React.Component {
               <Content
                 style={{
                   paddingLeft: '16px',
+                  height: '100%',
                 }}
               >
                 {this.props.children}

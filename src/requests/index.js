@@ -8,7 +8,7 @@ const service = axios.create({
 })
 //  对请求数据进行拦截处理
 service.interceptors.request.use((config) => {
-  //  对请求头进行设置，进行请求合法性验证
+  //  对请求体进行设置，进行请求合法性验证
   config.data = Object.assign({}, config.data, {
     // authToken: window.localStorage.getItem('authToken')
     authToken: 'q',
@@ -28,4 +28,7 @@ service.interceptors.response.use((res) => {
 //  导出被处理后的axios 并请求api,并可传递两个参数，如果需要的话后端可以使用（分页）
 export const getArticle = () => {
   return service.post('/api/v1/articlelist')
+}
+export const getArticleById = (id) => {
+  return service.post(`/api/v1/article/${id}`)
 }
