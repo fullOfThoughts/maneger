@@ -7,7 +7,9 @@ class Articleedit extends React.Component {
   state = {
     editContent: {},
   }
-
+  cancel = () => {
+    this.props.history.push('/admin/article')
+  }
   render() {
     return (
       <>
@@ -15,7 +17,7 @@ class Articleedit extends React.Component {
           title="编辑文章"
           bordered={false}
           style={{ width: '100%', minHeight: '100%' }}
-          extra={<Button>取消</Button>}
+          extra={<Button onClick={() => this.cancel()}>取消</Button>}
         >
           <NormalLoginForm id={this.props.match.params.id} />
         </Card>

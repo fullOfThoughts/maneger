@@ -29,6 +29,11 @@ service.interceptors.response.use((res) => {
 export const getArticle = () => {
   return service.post('/api/v1/articlelist')
 }
+//  获取单个文章
 export const getArticleById = (id) => {
   return service.post(`/api/v1/article/${id}`)
+}
+//  修改文章
+export const modifyArticleById = (id, data) => {
+  return service.post(`/lalla/${id}`, data)
 }
