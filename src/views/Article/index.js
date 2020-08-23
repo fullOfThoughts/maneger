@@ -1,7 +1,6 @@
 import React from 'react'
 import XLSX from 'xlsx'
-import { connect } from 'react-redux'
-import { editArticle } from '../../actions'
+
 import { getArticle } from '../../requests'
 import { Card, Button, Table, Tag, Popconfirm, message, Tooltip } from 'antd'
 const moment = require('moment')
@@ -58,7 +57,6 @@ class Articlelist extends React.Component {
   //  跳转至edit
   toEdit = (index, record) => {
     this.props.history.push(`/admin/article/edit/${index}`)
-    this.props.editArticle(record)
   }
   //  获取数据
   getData = () => {
@@ -189,4 +187,4 @@ class Articlelist extends React.Component {
     )
   }
 }
-export default connect(null, { editArticle })(Articlelist)
+export default Articlelist

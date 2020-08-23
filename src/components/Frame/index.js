@@ -1,22 +1,52 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-
+import { connect } from 'react-redux'
 import { adminRoutes } from '../../routes'
-
+import { getnotification } from '../../requests'
+import { getData } from '../../actions'
+import { UserOutlined, SettingOutlined } from '@ant-design/icons'
 import Logo from './logo.png'
-import { Layout, Menu, ConfigProvider } from 'antd'
+import { Layout, Menu, ConfigProvider, Dropdown, Button, Badge } from 'antd'
 import zhCN from 'antd/es/locale/zh_CN'
 const { Header, Content, Sider } = Layout
 
 @withRouter
 class Frame extends React.Component {
-  state = {}
+  state = {
+    count: 0,
+  }
+  componentDidMount() {
+    getnotification().then((res) => {
+      this.props.getData(res.data.list)
+    })
+  }
+
   menu = ({ key }) => {
     this.props.history.push(key)
   }
+  set = ({ key }) => {
+    this.props.history.push(key)
+  }
   render() {
+    const menu = (
+      <Menu onClick={this.set}>
+        <Menu.Item key="/admin/settings" icon={<SettingOutlined />}>
+          设置
+        </Menu.Item>
+
+        <Menu.Item key="/admin/notification" icon={<UserOutlined />}>
+          <Badge dot={this.props.count === 0 ? false : true}>通知中心</Badge>
+        </Menu.Item>
+
+        <Menu.Item key="/admin/article" icon={<UserOutlined />}>
+          退出登录
+        </Menu.Item>
+      </Menu>
+    )
+
     let arr = this.props.location.pathname.split('/')
     arr.length = 3
+
     return (
       <ConfigProvider locale={zhCN}>
         <Layout style={{ height: '100%' }}>
@@ -27,6 +57,16 @@ class Frame extends React.Component {
               height: '50px',
             }}
           >
+            <div>
+              <Dropdown overlay={menu} placement="topLeft" trigger={['click']}>
+                <Button style={{ float: 'right', marginTop: 10 }}>
+                  <Badge count={this.props.count}>
+                    {<UserOutlined />}
+                    欢迎您
+                  </Badge>
+                </Button>
+              </Dropdown>
+            </div>
             <div className="logo">
               <img
                 src={Logo}
@@ -76,4 +116,10 @@ class Frame extends React.Component {
     )
   }
 }
-export default Frame
+export default connect(
+  (state) => ({
+    count: state.nodification.list.filter((item) => item.hasRead === false)
+      .length,
+  }),
+  { getData }
+)(Frame)

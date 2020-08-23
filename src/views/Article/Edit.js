@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { NormalLoginForm } from './From'
 import { Card, Button } from 'antd'
 
@@ -25,4 +24,4 @@ class Articleedit extends React.Component {
     )
   }
 }
-export default connect((state) => ({ state }))(Articleedit)
+export default Articleedit

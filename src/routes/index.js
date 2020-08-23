@@ -5,6 +5,7 @@ import {
   Settings,
   Articlelist,
   Articleedit,
+  Notification,
 } from '../views'
 
 import {
@@ -54,6 +55,12 @@ export const adminRoutes = [
   {
     pathname: '/admin/article/edit/:id',
     component: Articleedit,
+    exact: true,
+    isNav: true,
+  },
+  {
+    pathname: '/admin/notification',
+    component: Notification,
     exact: true,
     isNav: true,
   },

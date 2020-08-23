@@ -37,3 +37,7 @@ export const getArticleById = (id) => {
 export const modifyArticleById = (id, data) => {
   return service.post(`/lalla/${id}`, data)
 }
+//  请求通知
+export const getnotification = () => {
+  return service.post('/api/v1/notification')
+}

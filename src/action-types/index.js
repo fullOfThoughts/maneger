@@ -1,1 +1,5 @@
 export const EDIT_ACTICLE = 'edit_article'
+export const COUNT_ARTICLE = 'count_article'
+export const BTN_LOADING = 'btn_loading'
+export const ALL_BTN = 'all_btn'
+export const GET_DATA = 'get_data'
