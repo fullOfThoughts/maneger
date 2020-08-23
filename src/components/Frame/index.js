@@ -38,8 +38,8 @@ class Frame extends React.Component {
           <Badge dot={this.props.count === 0 ? false : true}>通知中心</Badge>
         </Menu.Item>
 
-        <Menu.Item key="/admin/article" icon={<UserOutlined />}>
-          退出登录
+        <Menu.Item key="/login" icon={<UserOutlined />}>
+          登录
         </Menu.Item>
       </Menu>
     )
