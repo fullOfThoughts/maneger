@@ -12,10 +12,11 @@ ReactDOM.render(
       <Switch>
         <Route
           path="/admin"
-          render={(routerProps) => {
-            //  以后会用来进行权限限制
-            return <App {...routerProps} />
-          }}
+          // render={(routerProps) => {
+          //   //  以后会用来进行权限限制
+          //   return <App {...routerProps} />
+          // }}
+          component={App}
         />
         {/*对于不需要权限的组件直接用map 生成 */}
         {mainRoutes.map((item, i) => {

@@ -25,6 +25,13 @@ class Frame extends React.Component {
     this.props.history.push(key)
   }
   set = ({ key }) => {
+    if (key === '/login') {
+      window.localStorage.removeItem('authToken') ||
+        window.sessionStorage.removeItem('authToken')
+
+      window.localStorage.removeItem('users') ||
+        window.sessionStorage.removeItem('users')
+    }
     this.props.history.push(key)
   }
   render() {
@@ -39,14 +46,14 @@ class Frame extends React.Component {
         </Menu.Item>
 
         <Menu.Item key="/login" icon={<UserOutlined />}>
-          登录
+          退出登录
         </Menu.Item>
       </Menu>
     )
 
     let arr = this.props.location.pathname.split('/')
     arr.length = 3
-
+    console.log(this.props)
     return (
       <ConfigProvider locale={zhCN}>
         <Layout style={{ height: '100%' }}>
@@ -61,8 +68,7 @@ class Frame extends React.Component {
               <Dropdown overlay={menu} placement="topLeft" trigger={['click']}>
                 <Button style={{ float: 'right', marginTop: 10 }}>
                   <Badge count={this.props.count}>
-                    {<UserOutlined />}
-                    欢迎您
+                    欢迎您! {this.props.user.displayname}
                   </Badge>
                 </Button>
               </Dropdown>
@@ -120,6 +126,7 @@ export default connect(
   (state) => ({
     count: state.nodification.list.filter((item) => item.hasRead === false)
       .length,
+    user: state.user,
   }),
   { getData }
 )(Frame)
