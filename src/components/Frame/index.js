@@ -53,7 +53,7 @@ class Frame extends React.Component {
 
     let arr = this.props.location.pathname.split('/')
     arr.length = 3
-    console.log(this.props)
+
     return (
       <ConfigProvider locale={zhCN}>
         <Layout style={{ height: '100%' }}>

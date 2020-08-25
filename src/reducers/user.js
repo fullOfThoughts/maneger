@@ -4,9 +4,7 @@ const isLogin = Boolean(
     window.sessionStorage.getItem('authToken')
 )
 const initdata = JSON.parse(
-  window.localStorage.getItem('users') ||
-    window.sessionStorage.getItem('users') ||
-    '[]'
+  window.localStorage.getItem('users') || window.sessionStorage.getItem('users')
 )
 const initState = {
   id: '',

@@ -6,6 +6,7 @@ import {
   Articlelist,
   Articleedit,
   Notification,
+  Noauthority,
 } from '../views'
 
 import {
@@ -33,8 +34,8 @@ export const adminRoutes = [
     title: '仪表盘',
     isNav: true,
     icon: ConsoleSqlOutlined,
+    role: ['001'],
   },
-
   {
     pathname: '/admin/article',
     component: Articlelist,
@@ -43,6 +44,7 @@ export const adminRoutes = [
     title: '文章管理',
     isNav: true,
     icon: UnorderedListOutlined,
+    role: ['001', '002', '003'],
   },
   {
     pathname: '/admin/settings',
@@ -51,17 +53,27 @@ export const adminRoutes = [
     title: '设置',
     isNav: true,
     icon: SettingOutlined,
+    role: ['001', '002'],
   },
   {
     pathname: '/admin/article/edit/:id',
     component: Articleedit,
     exact: true,
     isNav: true,
+    role: ['001', '002'],
   },
   {
     pathname: '/admin/notification',
     component: Notification,
     exact: true,
     isNav: true,
+    role: ['001', '002', '003'],
+  },
+  {
+    pathname: '/admin/noauthority',
+    component: Noauthority,
+    exact: true,
+    isNav: false,
+    role: ['001', '002', '003'],
   },
 ]

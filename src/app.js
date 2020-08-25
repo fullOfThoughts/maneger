@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 @connect((state) => ({ user: state.user }))
 class App extends React.Component {
   state = {}
+
   render() {
     return this.props.user.isLogin === true ? (
       <Frame>
@@ -18,12 +19,16 @@ class App extends React.Component {
                 path={item.pathname}
                 exact={item.exact}
                 render={(routerProps) => {
-                  return <item.component {...routerProps} />
+                  return item.role.includes(this.props.user.role) ? (
+                    <item.component {...routerProps} />
+                  ) : (
+                    <Redirect to="/admin/Noauthority" />
+                  )
                 }}
               />
             )
           })}
-          <Redirect to={adminRoutes[0].pathname} from="/admin" exact />
+          <Redirect to={adminRoutes[1].pathname} from="/admin" exact />
           <Redirect to="/404" />
         </Switch>
       </Frame>

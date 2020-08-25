@@ -30,6 +30,10 @@ const Notification = Loadable({
   loader: () => import('./notification'),
   loading: Loading,
 })
+const Noauthority = Loadable({
+  loader: () => import('./Noauthority'),
+  loading: Loading,
+})
 
 export {
   Dashboard,
@@ -39,4 +43,5 @@ export {
   Articlelist,
   Articleedit,
   Notification,
+  Noauthority,
 }
